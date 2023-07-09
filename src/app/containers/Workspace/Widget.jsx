@@ -6,7 +6,7 @@ import ConsoleWidget from 'app/widgets/Console';
 import GCodeWidget from 'app/widgets/GCode';
 import GrblWidget from 'app/widgets/Grbl';
 import LaserWidget from 'app/widgets/Laser';
-import LaserWidget2 from 'app/widgets/Laser2';
+import Test01widget from 'app/widgets/Test01';
 import MacroWidget from 'app/widgets/Macro';
 import MarlinWidget from 'app/widgets/Marlin';
 import ProbeWidget from 'app/widgets/Probe';
@@ -25,7 +25,7 @@ const getWidgetByName = (name) => {
     'gcode': GCodeWidget,
     'grbl': GrblWidget,
     'laser': LaserWidget,
-    'laser2': LaserWidget2,
+    'test01': Test01widget,
     'macro': MacroWidget,
     'marlin': MarlinWidget,
     'probe': ProbeWidget,

@@ -93,8 +93,8 @@ class WidgetManager extends PureComponent {
         disabled: false
       },
       {
-        id: 'laser2',
-        caption: i18n._('Laser2 Widget'),
+        id: 'test01',
+        caption: i18n._('Test01 Widget'),
         details: i18n._('This widget allows you control laser intensity and turn the laser on/off.'),
         visible: true,
         disabled: false
