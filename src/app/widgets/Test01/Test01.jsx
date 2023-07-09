@@ -25,7 +25,7 @@ class Test01 extends PureComponent {
       actions: PropTypes.object
     };
 
-    getLaserIntensityScale() {
+    getTest01IntensityScale() {
       const { state } = this.props;
       const controllerType = state.controller.type;
       const controllerState = state.controller.state || {};
@@ -56,18 +56,18 @@ class Test01 extends PureComponent {
       const { state, actions } = this.props;
       const none = '–';
       const { canClick, panel, test } = state;
-      const laserIntensityScale = this.getLaserIntensityScale();
+      const test01IntensityScale = this.getTest01IntensityScale();
 
       return (
         <div>
           <div className="form-group">
             <label className="control-label">
-              {i18n._('Laser Intensity Control')}
+              {i18n._('Test01 Intensity Control')}
             </label>
             <div className="row no-gutters">
               <div className="col-xs-3">
                 <div className={styles.droDisplay}>
-                  {laserIntensityScale ? laserIntensityScale + '%' : none}
+                  {test01IntensityScale ? test01IntensityScale + '%' : none}
                 </div>
               </div>
               <div className="col-xs-9">
@@ -145,17 +145,17 @@ class Test01 extends PureComponent {
             <Panel.Heading className={styles.panelHeading}>
               <Toggler
                 className="clearfix"
-                onToggle={actions.toggleLaserTest}
-                title={panel.laserTest.expanded ? i18n._('Hide') : i18n._('Show')}
+                onToggle={actions.toggleTest01Test}
+                title={panel.test01Test.expanded ? i18n._('Hide') : i18n._('Show')}
               >
-                <div className="pull-left">{i18n._('Laser Test')}</div>
+                <div className="pull-left">{i18n._('Test01 Test')}</div>
                 <Toggler.Icon
                   className="pull-right"
-                  expanded={panel.laserTest.expanded}
+                  expanded={panel.test01Test.expanded}
                 />
               </Toggler>
             </Panel.Heading>
-            {panel.laserTest.expanded && (
+            {panel.test01Test.expanded && (
               <Panel.Body>
                 <div className="table-form" style={{ marginBottom: 15 }}>
                   <div className="table-form-row">
@@ -170,7 +170,7 @@ class Test01 extends PureComponent {
                         min={0}
                         max={100}
                         step={1}
-                        onChange={actions.changeLaserTestPower}
+                        onChange={actions.changeTest01TestPower}
                       />
                     </div>
                   </div>
@@ -187,7 +187,7 @@ class Test01 extends PureComponent {
                           value={test.duration}
                           min={0}
                           step={1}
-                          onChange={actions.changeLaserTestDuration}
+                          onChange={actions.changeTest01TestDuration}
                         />
                         <span className="input-group-addon">{i18n._('ms')}</span>
                       </div>
@@ -207,7 +207,7 @@ class Test01 extends PureComponent {
                           value={test.maxS}
                           min={0}
                           step={1}
-                          onChange={actions.changeLaserTestMaxS}
+                          onChange={actions.changeTest01TestMaxS}
                         />
                       </div>
                     </div>
@@ -220,9 +220,9 @@ class Test01 extends PureComponent {
                       className="btn btn-default"
                       style={{ minWidth: 80 }}
                       disabled={!canClick}
-                      onClick={actions.laserTestOn}
+                      onClick={actions.test01TestOn}
                     >
-                      {i18n._('Laser Test')}
+                      {i18n._('Test01 Test')}
                     </button>
                   </div>
                   <div className="btn-group" role="group">
@@ -231,9 +231,9 @@ class Test01 extends PureComponent {
                       className="btn btn-default"
                       style={{ minWidth: 80 }}
                       disabled={!canClick}
-                      onClick={actions.laserTestOff}
+                      onClick={actions.test01TestOff}
                     >
-                      {i18n._('Laser Off')}
+                      {i18n._('Test01 Off')}
                     </button>
                   </div>
                 </div>

@@ -55,20 +55,20 @@ class Test01Widget extends PureComponent {
         const { minimized } = this.state;
         this.setState({ minimized: !minimized });
       },
-      toggleLaserTest: () => {
-        const expanded = this.state.panel.laserTest.expanded;
+      toggleTest01Test: () => {
+        const expanded = this.state.panel.test01Test.expanded;
 
         this.setState({
           panel: {
             ...this.state.panel,
-            laserTest: {
-              ...this.state.panel.laserTest,
+            test01Test: {
+              ...this.state.panel.test01Test,
               expanded: !expanded
             }
           }
         });
       },
-      changeLaserTestPower: (value) => {
+      changeTest01TestPower: (value) => {
         const power = Number(value) || 0;
         this.setState({
           test: {
@@ -77,7 +77,7 @@ class Test01Widget extends PureComponent {
           }
         });
       },
-      changeLaserTestDuration: (event) => {
+      changeTest01TestDuration: (event) => {
         const value = event.target.value;
         if (typeof value === 'string' && value.trim() === '') {
           this.setState({
@@ -95,7 +95,7 @@ class Test01Widget extends PureComponent {
           });
         }
       },
-      changeLaserTestMaxS: (event) => {
+      changeTest01TestMaxS: (event) => {
         const value = event.target.value;
         if (typeof value === 'string' && value.trim() === '') {
           this.setState({
@@ -113,12 +113,12 @@ class Test01Widget extends PureComponent {
           });
         }
       },
-      laserTestOn: () => {
+      test01TestOn: () => {
         const { power, duration, maxS } = this.state.test;
-        controller.command('lasertest:on', power, duration, maxS);
+        controller.command('test01test:on', power, duration, maxS);
       },
-      laserTestOff: () => {
-        controller.command('lasertest:off');
+      test01TestOff: () => {
+        controller.command('test01test:off');
       }
     };
 
@@ -167,7 +167,7 @@ class Test01Widget extends PureComponent {
       } = this.state;
 
       this.config.set('minimized', minimized);
-      this.config.set('panel.laserTest.expanded', panel.laserTest.expanded);
+      this.config.set('panel.test01Test.expanded', panel.test01Test.expanded);
       if (isNumber(test.power)) {
         this.config.set('test.power', test.power);
       }
@@ -191,8 +191,8 @@ class Test01Widget extends PureComponent {
           state: controller.state
         },
         panel: {
-          laserTest: {
-            expanded: this.config.get('panel.laserTest.expanded')
+          test01Test: {
+            expanded: this.config.get('panel.test01Test.expanded')
           }
         },
         test: {
@@ -257,7 +257,7 @@ class Test01Widget extends PureComponent {
               {isForkedWidget &&
                 <i className="fa fa-code-fork" style={{ marginRight: 5 }} />
               }
-              {i18n._('Laser')}
+              {i18n._('Test01')}
             </Widget.Title>
             <Widget.Controls className={this.props.sortable.filterClassName}>
               <Widget.Button

@@ -538,5 +538,10 @@
     "CLR": "ОЧИСТИТЬ",
     "Set RTS line status upon opening": "Установить статус линии RTS при открытии",
     "Use RTS/CTS flow control": "Используйте контроль потока RTS/CTS",
-    "Test01 Widget": ""
+    "Test01 Widget": "",
+    "This widget allows you control test01 intensity and turn the test01 on/off.": "",
+    "Test01": "",
+    "Test01 Intensity Control": "",
+    "Test01 Test": "",
+    "Test01 Off": ""
 }

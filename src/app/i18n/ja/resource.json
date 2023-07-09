@@ -538,5 +538,10 @@
     "CLR": "クリア",
     "Set RTS line status upon opening": "開くときにRTSラインの状態を設定する",
     "Use RTS/CTS flow control": "RTS/CTSフロー制御を使用する",
-    "Test01 Widget": ""
+    "Test01 Widget": "",
+    "This widget allows you control test01 intensity and turn the test01 on/off.": "",
+    "Test01": "",
+    "Test01 Intensity Control": "",
+    "Test01 Test": "",
+    "Test01 Off": ""
 }
