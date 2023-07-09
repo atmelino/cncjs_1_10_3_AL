@@ -22,7 +22,7 @@ const defaultState = {
       secondary: {
         show: true,
         widgets: [
-          'axes', 'gcode', 'macro', 'probe', 'spindle', 'laser'
+          'axes', 'gcode', 'macro', 'probe', 'spindle', 'laser', 'laser2'
         ]
       }
     },

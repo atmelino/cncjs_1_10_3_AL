@@ -1,0 +1,141 @@
+containers/Workspace/WidgetManager/WidgetManager.jsx:        id: 'laser',
+containers/Workspace/WidgetManager/WidgetManager.jsx:        caption: i18n._('Laser Widget'),
+containers/Workspace/WidgetManager/WidgetManager.jsx:        details: i18n._('This widget allows you control laser intensity and turn the laser on/off.'),
+containers/Workspace/Widget.jsx:import LaserWidget from 'app/widgets/Laser';
+containers/Workspace/Widget.jsx:    'laser': LaserWidget,
+i18n/hu/resource.json:    "Laser Widget": "Lézer Widget",
+i18n/hu/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Ez a widget ellenőrzi lézer intenzitását és kapcsolja a lézert be / ki.",
+i18n/hu/resource.json:    "Laser": "Lézer",
+i18n/hu/resource.json:    "Laser Intensity Control": "Lézer erősség szabályzás",
+i18n/hu/resource.json:    "Laser Test": "Lézer teszt",
+i18n/hu/resource.json:    "Laser Off": "Lézer Kikapcsolás",
+i18n/nb/resource.json:    "Laser Widget": "Laser-widget",
+i18n/nb/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Denne widgeten lar deg styre laserstyrke og skru laseren av/på.",
+i18n/nb/resource.json:    "Laser": "Laser",
+i18n/nb/resource.json:    "Laser Intensity Control": "Intensitetskontroll for laser",
+i18n/nb/resource.json:    "Laser Test": "Lasertest",
+i18n/nb/resource.json:    "Laser Off": "Laser av",
+i18n/zh-tw/resource.json:    "Laser Widget": "雷射元件",
+i18n/zh-tw/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "這個元件可用來控制雷射強度並開關雷射。",
+i18n/zh-tw/resource.json:    "Laser": "雷射",
+i18n/zh-tw/resource.json:    "Laser Intensity Control": "雷射強度控制",
+i18n/zh-tw/resource.json:    "Laser Test": "雷射測試",
+i18n/zh-tw/resource.json:    "Laser Off": "關閉雷射",
+i18n/fr/resource.json:    "Laser Widget": "",
+i18n/fr/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "",
+i18n/fr/resource.json:    "Laser": "",
+i18n/fr/resource.json:    "Laser Intensity Control": "",
+i18n/fr/resource.json:    "Laser Test": "",
+i18n/fr/resource.json:    "Laser Off": "",
+i18n/tr/resource.json:    "Laser Widget": "Lazer pencere öğesi",
+i18n/tr/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Bu widget, lazer yoğunluğunu kontrol etmenizi ve lazeri açıp kapatmanızı sağlar.",
+i18n/tr/resource.json:    "Laser": "Lazer",
+i18n/tr/resource.json:    "Laser Intensity Control": "Lazer yoğunluk kontrolü",
+i18n/tr/resource.json:    "Laser Test": "Lazer test",
+i18n/tr/resource.json:    "Laser Off": "Lazeri Kapat",
+i18n/ja/resource.json:    "Laser Widget": "レーザー ウィジェット",
+i18n/ja/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "このウィジェットはレーザー強度やレーザーのON/OFF制御を提供します。",
+i18n/ja/resource.json:    "Laser": "レーザー",
+i18n/ja/resource.json:    "Laser Intensity Control": "レーザー強度制御",
+i18n/ja/resource.json:    "Laser Test": "レーザーテスト",
+i18n/ja/resource.json:    "Laser Off": "レーザーオフ",
+i18n/pt-pt/resource.json:    "Laser Widget": "Módulo Laser",
+i18n/pt-pt/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Este módulo permite ativar/desativar e controlar a intensidade do laser.",
+i18n/pt-pt/resource.json:    "Laser": "Laser",
+i18n/pt-pt/resource.json:    "Laser Intensity Control": "Controle de Intensidade do Laser",
+i18n/pt-pt/resource.json:    "Laser Test": "Testar Laser",
+i18n/pt-pt/resource.json:    "Laser Off": "Desligar Laser",
+i18n/pt-br/resource.json:    "Laser Widget": "Módulo Laser",
+i18n/pt-br/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Este módulo permite ativar/desativar e controlar a intensidade do laser.",
+i18n/pt-br/resource.json:    "Laser": "Laser",
+i18n/pt-br/resource.json:    "Laser Intensity Control": "Controle de Intensidade do Laser",
+i18n/pt-br/resource.json:    "Laser Test": "Testar Laser",
+i18n/pt-br/resource.json:    "Laser Off": "Desligar Laser",
+i18n/en/resource.json:    "Laser Widget": "Laser Widget",
+i18n/en/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "This widget allows you control laser intensity and turn the laser on/off.",
+i18n/en/resource.json:    "Laser": "Laser",
+i18n/en/resource.json:    "Laser Intensity Control": "Laser Intensity Control",
+i18n/en/resource.json:    "Laser Test": "Laser Test",
+i18n/en/resource.json:    "Laser Off": "Laser Off",
+i18n/nl/resource.json:    "Laser Widget": "Laser Widget",
+i18n/nl/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Deze widget staat U toe de laserintensiteit te controleren en de laser aan en uit te zetten",
+i18n/nl/resource.json:    "Laser": "Laser",
+i18n/nl/resource.json:    "Laser Intensity Control": "Laser Intensiteit Beheer",
+i18n/nl/resource.json:    "Laser Test": "Laser Test",
+i18n/nl/resource.json:    "Laser Off": "Lase uit",
+i18n/ru/resource.json:    "Laser Widget": "",
+i18n/ru/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "",
+i18n/ru/resource.json:    "Laser": "",
+i18n/ru/resource.json:    "Laser Intensity Control": "",
+i18n/ru/resource.json:    "Laser Test": "",
+i18n/ru/resource.json:    "Laser Off": "",
+i18n/cs/resource.json:    "Laser Widget": "",
+i18n/cs/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "",
+i18n/cs/resource.json:    "Laser": "",
+i18n/cs/resource.json:    "Laser Intensity Control": "",
+i18n/cs/resource.json:    "Laser Test": "",
+i18n/cs/resource.json:    "Laser Off": "",
+i18n/de/resource.json:    "Laser Widget": "",
+i18n/de/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Dieses Widget erlaubt es, die Intensität des Lasers einzustellen und ihn ein und aus zu schalten.",
+i18n/de/resource.json:    "Laser": "Laser",
+i18n/de/resource.json:    "Laser Intensity Control": "Laser Intensitäts Steuerung",
+i18n/de/resource.json:    "Laser Test": "Laser Test",
+i18n/de/resource.json:    "Laser Off": "Laser Aus",
+i18n/it/resource.json:    "Laser Widget": "",
+i18n/it/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "",
+i18n/it/resource.json:    "Laser": "",
+i18n/it/resource.json:    "Laser Intensity Control": "",
+i18n/it/resource.json:    "Laser Test": "",
+i18n/it/resource.json:    "Laser Off": "",
+i18n/es/resource.json:    "Laser Widget": "Láser widget",
+i18n/es/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "Este widget permite controlar la intensidad del láser y encender/apagar el láser.",
+i18n/es/resource.json:    "Laser": "Laser",
+i18n/es/resource.json:    "Laser Intensity Control": "Control de intensidad de laser",
+i18n/es/resource.json:    "Laser Test": "Probar laser",
+i18n/es/resource.json:    "Laser Off": "Laser apagado",
+i18n/zh-cn/resource.json:    "Laser Widget": "激光组件",
+i18n/zh-cn/resource.json:    "This widget allows you control laser intensity and turn the laser on/off.": "该组件可以让你控制激光强度和激光开关。",
+i18n/zh-cn/resource.json:    "Laser": "激光",
+i18n/zh-cn/resource.json:    "Laser Intensity Control": "激光强度控制",
+i18n/zh-cn/resource.json:    "Laser Test": "激光测试",
+i18n/zh-cn/resource.json:    "Laser Off": "关闭激光",
+store/defaultState.js:          'axes', 'gcode', 'macro', 'probe', 'spindle', 'laser'
+store/defaultState.js:    laser: {
+store/defaultState.js:        laserTest: {
+widgets/Laser/index.jsx:import Laser from './Laser';
+widgets/Laser/index.jsx:class LaserWidget extends PureComponent {
+widgets/Laser/index.jsx:      toggleLaserTest: () => {
+widgets/Laser/index.jsx:        const expanded = this.state.panel.laserTest.expanded;
+widgets/Laser/index.jsx:            laserTest: {
+widgets/Laser/index.jsx:              ...this.state.panel.laserTest,
+widgets/Laser/index.jsx:      changeLaserTestPower: (value) => {
+widgets/Laser/index.jsx:      changeLaserTestDuration: (event) => {
+widgets/Laser/index.jsx:      changeLaserTestMaxS: (event) => {
+widgets/Laser/index.jsx:      laserTestOn: () => {
+widgets/Laser/index.jsx:        controller.command('lasertest:on', power, duration, maxS);
+widgets/Laser/index.jsx:      laserTestOff: () => {
+widgets/Laser/index.jsx:        controller.command('lasertest:off');
+widgets/Laser/index.jsx:      this.config.set('panel.laserTest.expanded', panel.laserTest.expanded);
+widgets/Laser/index.jsx:          laserTest: {
+widgets/Laser/index.jsx:            expanded: this.config.get('panel.laserTest.expanded')
+widgets/Laser/index.jsx:              {i18n._('Laser')}
+widgets/Laser/index.jsx:            <Laser
+widgets/Laser/index.jsx:export default LaserWidget;
+widgets/Laser/Laser.jsx:class Laser extends PureComponent {
+widgets/Laser/Laser.jsx:    getLaserIntensityScale() {
+widgets/Laser/Laser.jsx:      const laserIntensityScale = this.getLaserIntensityScale();
+widgets/Laser/Laser.jsx:              {i18n._('Laser Intensity Control')}
+widgets/Laser/Laser.jsx:                  {laserIntensityScale ? laserIntensityScale + '%' : none}
+widgets/Laser/Laser.jsx:                onToggle={actions.toggleLaserTest}
+widgets/Laser/Laser.jsx:                title={panel.laserTest.expanded ? i18n._('Hide') : i18n._('Show')}
+widgets/Laser/Laser.jsx:                <div className="pull-left">{i18n._('Laser Test')}</div>
+widgets/Laser/Laser.jsx:                  expanded={panel.laserTest.expanded}
+widgets/Laser/Laser.jsx:            {panel.laserTest.expanded && (
+widgets/Laser/Laser.jsx:                        onChange={actions.changeLaserTestPower}
+widgets/Laser/Laser.jsx:                          onChange={actions.changeLaserTestDuration}
+widgets/Laser/Laser.jsx:                          onChange={actions.changeLaserTestMaxS}
+widgets/Laser/Laser.jsx:                      onClick={actions.laserTestOn}
+widgets/Laser/Laser.jsx:                      {i18n._('Laser Test')}
+widgets/Laser/Laser.jsx:                      onClick={actions.laserTestOff}
+widgets/Laser/Laser.jsx:                      {i18n._('Laser Off')}
+widgets/Laser/Laser.jsx:export default Laser;
