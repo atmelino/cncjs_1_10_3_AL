@@ -537,5 +537,8 @@
     "SET": "IMPOSTA",
     "CLR": "CANCELLA",
     "Set RTS line status upon opening": "Imposta lo stato della linea RTS all'apertura",
-    "Use RTS/CTS flow control": "Utilizzare il controllo di flusso RTS/CTS"
+    "Use RTS/CTS flow control": "Utilizzare il controllo di flusso RTS/CTS",
+    "Test01": "",
+    "Test01 Widget": "",
+    "Test widget.": ""
 }

@@ -537,5 +537,8 @@
     "SET": "设置",
     "CLR": "清除",
     "Set RTS line status upon opening": "打开时设置RTS线路状态",
-    "Use RTS/CTS flow control": "使用RTS/CTS流控制"
+    "Use RTS/CTS flow control": "使用RTS/CTS流控制",
+    "Test01": "",
+    "Test01 Widget": "",
+    "Test widget.": ""
 }

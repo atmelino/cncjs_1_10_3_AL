@@ -257,7 +257,7 @@ class Test01Widget extends PureComponent {
               {isForkedWidget &&
                 <i className="fa fa-code-fork" style={{ marginRight: 5 }} />
               }
-              {i18n._('Laser')}
+              {i18n._('Test01')}
             </Widget.Title>
             <Widget.Controls className={this.props.sortable.filterClassName}>
               <Widget.Button

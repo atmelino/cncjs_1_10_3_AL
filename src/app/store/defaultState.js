@@ -22,7 +22,7 @@ const defaultState = {
       secondary: {
         show: true,
         widgets: [
-          'axes', 'gcode', 'macro', 'probe', 'spindle', 'laser'
+          'axes', 'gcode', 'macro', 'probe', 'spindle', 'laser', 'test01'
         ]
       }
     },
@@ -104,6 +104,19 @@ const defaultState = {
       }
     },
     laser: {
+      minimized: false,
+      panel: {
+        laserTest: {
+          expanded: true
+        }
+      },
+      test: {
+        power: 0,
+        duration: 0,
+        maxS: 1000
+      }
+    },
+    test01: {
       minimized: false,
       panel: {
         laserTest: {
