@@ -540,5 +540,8 @@
     "Use RTS/CTS flow control": "Use RTS/CTS flow control",
     "Test01": "Test01",
     "Test01 Widget": "Test01 Widget",
-    "Test widget.": "Test widget."
+    "Test widget.": "Test widget.",
+    "AutoLevel Widget": "AutoLevel Widget",
+    "This widget lets you probe a grid for autolevelling a PCB.": "This widget lets you probe a grid for autolevelling a PCB.",
+    "AutoLevel": "AutoLevel"
 }

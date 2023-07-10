@@ -540,5 +540,8 @@
     "Use RTS/CTS flow control": "Utilice control de flujo RTS/CTS",
     "Test01": "",
     "Test01 Widget": "",
-    "Test widget.": ""
+    "Test widget.": "",
+    "AutoLevel Widget": "",
+    "This widget lets you probe a grid for autolevelling a PCB.": "",
+    "AutoLevel": ""
 }
