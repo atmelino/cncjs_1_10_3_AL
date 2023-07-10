@@ -291,6 +291,7 @@ class Header extends PureComponent {
                   src="images/logo-badge-32x32.png"
                   alt=""
                 />
+                autolevel
                 <div
                   style={{
                     fontSize: '50%',
