@@ -3068,6 +3068,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-table@npm:^6.8.5":
+  version: 6.8.10
+  resolution: "@types/react-table@npm:6.8.10"
+  dependencies:
+    "@types/react": "*"
+  checksum: 2f8fcbe195c53b2685f403f5d66c09b60917d3af7ec9e29f8b3ecdc748eb6db5a93b4aecaaed4910ff33671a8745da2c34184b445cd184ad504b0240be994029
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*":
+  version: 18.2.14
+  resolution: "@types/react@npm:18.2.14"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: a6a5e8cc78f486b9020d1ad009aa6c56943c68c7c6376e0f8399e9cbcd950b7b8f5d73f00200f5379f5e58d31d57d8aed24357f301d8e86108cd438ce6c8b3dd
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:>=16.9.11":
   version: 18.0.27
   resolution: "@types/react@npm:18.0.27"
@@ -5802,6 +5822,7 @@ __metadata:
     namespace-constants: ~0.5.0
     nib: ~1.1.2
     normalize.css: ~8.0.1
+    numeral: ^2.0.6
     opencollective: ~1.0.3
     optimize-css-assets-webpack-plugin: ~5.0.1
     perfect-scrollbar: ~1.4.0
@@ -5832,6 +5853,7 @@ __metadata:
     react-router-redux: ~5.0.0-alpha.6
     react-select: ~1.2.1
     react-sortablejs: ~1.5.1
+    react-table: ^6.8.6
     react-tiny-virtual-list: ~2.2.0
     react-toggle: ~4.0.2
     recompose: ~0.30.0
@@ -14276,6 +14298,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"numeral@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "numeral@npm:2.0.6"
+  checksum: 89f011116539692bf53fde380adeb0579623d00f782703c71c0062d4a8686770c404a041ff4eef454de53925a9f75bba1fa52726057b13d40473f707730b07c2
+  languageName: node
+  linkType: hard
+
 "nyc@npm:^14.0.0":
   version: 14.1.1
   resolution: "nyc@npm:14.1.1"
@@ -16685,6 +16714,21 @@ __metadata:
     react-dom: ">=15.0.0"
     sortablejs: ^1.6.1
   checksum: 88755fda2d66a394481cca2ccfaa038ac327b80ba1f2e9ab8826c3e630f72cb2db1c2877e101c4eed47cc362844c7929775f27c4e36638db36cbecaed4669ff6
+  languageName: node
+  linkType: hard
+
+"react-table@npm:^6.8.6":
+  version: 6.11.5
+  resolution: "react-table@npm:6.11.5"
+  dependencies:
+    "@types/react-table": ^6.8.5
+    classnames: ^2.2.5
+    react-is: ^16.8.1
+  peerDependencies:
+    prop-types: ^15.7.0
+    react: ^16.x.x
+    react-dom: ^16.x.x
+  checksum: dda0e7f661664fe7e6331a2b518772160923195c6b9beb56f937cc1d617690d4124e31d4d4c6c1b9068f57b59ae00ae3b35c82a04f633ca2cfd2de83d5fd6da2
   languageName: node
   linkType: hard
 
