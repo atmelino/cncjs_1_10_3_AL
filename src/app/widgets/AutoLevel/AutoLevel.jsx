@@ -1,247 +1,151 @@
-import _ from 'lodash';
-import Slider from 'rc-slider';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import Panel from 'app/components/Panel';
-import Toggler from 'app/components/Toggler';
-import RepeatButton from 'app/components/RepeatButton';
-import controller from 'app/lib/controller';
-import i18n from 'app/lib/i18n';
+import numeral from 'numeral';
+import ReactTable from 'react-table';
+import './react-table.css';
+import log from '../../lib/log';
+
 import {
-  // Grbl
-  GRBL,
-  // Marlin
-  MARLIN,
-  // Smoothie
-  SMOOTHIE,
-  // TinyG
-  TINYG
-} from '../../constants';
-import styles from './index.styl';
+    MODAL_PREVIEW,
+    MODAL_PREVIEW2
+} from './constants';
 
 class AutoLevel extends PureComponent {
     static propTypes = {
-      state: PropTypes.object,
-      actions: PropTypes.object
+        state: PropTypes.object,
+        actions: PropTypes.object
     };
 
-    getLaserIntensityScale() {
-      const { state } = this.props;
-      const controllerType = state.controller.type;
-      const controllerState = state.controller.state || {};
-      const controllerSettings = state.controller.settings || {};
-      let scale = 0;
-
-      if (controllerType === GRBL) {
-        const ovS = _.get(controllerState, 'status.ov[2]', []);
-        scale = Number(ovS) || 0;
-      }
-      if (controllerType === MARLIN) {
-        const ovS = _.get(controllerState, 'ovS');
-        scale = Number(ovS) || 0;
-      }
-      if (controllerType === SMOOTHIE) {
-        const ovS = _.get(controllerState, 'status.ovS');
-        scale = Number(ovS) || 0;
-      }
-      if (controllerType === TINYG) {
-        const ovS = _.get(controllerSettings, 'sso');
-        scale = Math.round((Number(ovS) || 0) * 100);
-      }
-
-      return scale;
-    }
+    referenceZ = 0.0;
 
     render() {
-      const { state, actions } = this.props;
-      const none = '–';
-      const { canClick, panel, test } = state;
-      const laserIntensityScale = this.getLaserIntensityScale();
+        const { state, actions } = this.props;
+        //log.error('AutoLevel :' + JSON.stringify(state));
 
-      return (
-        <div>
-          <div className="form-group">
-            <label className="control-label">
-              {i18n._('Laser Intensity Control')}
-            </label>
-            <div className="row no-gutters">
-              <div className="col-xs-3">
-                <div className={styles.droDisplay}>
-                  {laserIntensityScale ? laserIntensityScale + '%' : none}
-                </div>
-              </div>
-              <div className="col-xs-9">
-                <div className={styles.droBtnGroup}>
-                  <div className="btn-group btn-group-sm" role="group">
-                    <RepeatButton
-                      className="btn btn-default"
-                      style={{ padding: 5 }}
-                      disabled={!canClick}
-                      onClick={() => {
-                        controller.command('spindleOverride', -10);
-                      }}
-                    >
-                      <i className="fa fa-arrow-down" style={{ fontSize: 14 }} />
-                      <span style={{ marginLeft: 5 }}>
-                                            -10%
-                      </span>
-                    </RepeatButton>
-                    <RepeatButton
-                      className="btn btn-default"
-                      style={{ padding: 5 }}
-                      disabled={!canClick}
-                      onClick={() => {
-                        controller.command('spindleOverride', -1);
-                      }}
-                    >
-                      <i className="fa fa-arrow-down" style={{ fontSize: 10 }} />
-                      <span style={{ marginLeft: 5 }}>
-                                            -1%
-                      </span>
-                    </RepeatButton>
-                    <RepeatButton
-                      className="btn btn-default"
-                      style={{ padding: 5 }}
-                      disabled={!canClick}
-                      onClick={() => {
-                        controller.command('spindleOverride', 1);
-                      }}
-                    >
-                      <i className="fa fa-arrow-up" style={{ fontSize: 10 }} />
-                      <span style={{ marginLeft: 5 }}>
-                                            1%
-                      </span>
-                    </RepeatButton>
-                    <RepeatButton
-                      className="btn btn-default"
-                      style={{ padding: 5 }}
-                      disabled={!canClick}
-                      onClick={() => {
-                        controller.command('spindleOverride', 10);
-                      }}
-                    >
-                      <i className="fa fa-arrow-up" style={{ fontSize: 14 }} />
-                      <span style={{ marginLeft: 5 }}>
-                                            10%
-                      </span>
-                    </RepeatButton>
-                    <button
-                      type="button"
-                      className="btn btn-default"
-                      style={{ padding: 5 }}
-                      disabled={!canClick}
-                      onClick={() => {
-                        controller.command('spindleOverride', 0);
-                      }}
-                    >
-                      <i className="fa fa-undo fa-fw" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <Panel className={styles.panel}>
-            <Panel.Heading className={styles.panelHeading}>
-              <Toggler
-                className="clearfix"
-                onToggle={actions.toggleLaserTest}
-                title={panel.laserTest.expanded ? i18n._('Hide') : i18n._('Show')}
-              >
-                <div className="pull-left">{i18n._('Laser Test')}</div>
-                <Toggler.Icon
-                  className="pull-right"
-                  expanded={panel.laserTest.expanded}
-                />
-              </Toggler>
-            </Panel.Heading>
-            {panel.laserTest.expanded && (
-              <Panel.Body>
-                <div className="table-form" style={{ marginBottom: 15 }}>
-                  <div className="table-form-row">
-                    <div className="table-form-col table-form-col-label middle">
-                      {i18n._('Power (%)')}
-                    </div>
-                    <div className="table-form-col">
-                      <div className="text-center">{test.power}%</div>
-                      <Slider
-                        style={{ padding: 0 }}
-                        defaultValue={test.power}
-                        min={0}
-                        max={100}
-                        step={1}
-                        onChange={actions.changeLaserTestPower}
-                      />
-                    </div>
-                  </div>
-                  <div className="table-form-row">
-                    <div className="table-form-col table-form-col-label middle">
-                      {i18n._('Test duration')}
-                    </div>
-                    <div className="table-form-col">
-                      <div className="input-group input-group-sm" style={{ width: '100%' }}>
-                        <input
-                          type="number"
-                          className="form-control"
-                          style={{ borderRadius: 0 }}
-                          value={test.duration}
-                          min={0}
-                          step={1}
-                          onChange={actions.changeLaserTestDuration}
+        const colWidth = 60;
+        const probingColumns = [{
+            Header: 'x',
+            accessor: 'x',
+            width: colWidth
+        }, {
+            Header: 'y',
+            accessor: 'y',
+            width: colWidth
+        }, {
+            Header: 'z',
+            accessor: 'z',
+            width: colWidth
+        }, {
+            Header: 'pz',
+            accessor: 'pz',
+            width: colWidth
+        }];
+
+        if (Object.prototype.hasOwnProperty.call(state, 'probingData')) {
+            //log.info('AutoLevel :' + JSON.stringify(state));
+            //log.error('AutoLevel :' + JSON.stringify(state.probingData));
+            //log.error('AutoLevel :' + JSON.stringify(state.probingData.result));
+            if (state.probingData.printed === false) {
+                state.probingData.printed = true;
+                //log.error('AutoLevel result :' + JSON.stringify(state.probingData.result));
+                log.info('AutoLevel result :' + JSON.stringify(state.probingData.result));
+
+                let sx = state.probingData.result.x;
+                let sy = state.probingData.result.y;
+                let sz = state.probingData.result.z;
+
+                // first data point becomes z reference
+                if (state.probingObj.length === 0) {
+                    this.referenceZ = Number(sz);
+                }
+
+                // correct new z entry for autolevel plane
+                log.info('AutoLevel new reference: ' + this.referenceZ);
+                let PRBz = Number(sz);
+                let corz = PRBz - this.referenceZ; // corrected z
+                let cz = numeral(corz).format('0.000');
+
+                // if (this.state.probingObj.length > 0) {
+                //     log.error('AutoLevel points: ' + this.state.probingObj.length);
+                //     // first point? use z as reference
+                //     // same x-y position as before? Replace previous entry
+                //     let index = this.state.probingObj.length - 1;
+                //     if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
+                //         log.error('AutoLevel repeat position: ');
+                //         this.this.referenceZ = Number(sz);
+                //     }
+                // }
+
+                state.probingObj.push({
+                    x: sx,
+                    y: sy,
+                    z: cz,
+                    pz: sz
+                });
+                //log.info('AutoLevel probingObj : ' + JSON.stringify(this.state.probingObj));
+            }
+        }
+        //log.info( 'AutoLevel render before return');
+
+        return (
+            <div>
+                <div className="row no-gutters">
+                    <div>
+                        <ReactTable
+                            data={state.probingObj}
+                            columns={probingColumns}
+                            defaultPageSize={10}
                         />
-                        <span className="input-group-addon">{i18n._('ms')}</span>
-                      </div>
                     </div>
-                  </div>
-                  <div className="table-form-row">
-                    <div className="table-form-col table-form-col-label middle">
-                      {i18n._('Maximum value')}
-                    </div>
-                    <div className="table-form-col">
-                      <div className="input-group input-group-sm" style={{ width: '100%' }}>
-                        <span className="input-group-addon">S</span>
-                        <input
-                          type="number"
-                          className="form-control"
-                          style={{ borderRadius: 0 }}
-                          value={test.maxS}
-                          min={0}
-                          step={1}
-                          onChange={actions.changeLaserTestMaxS}
-                        />
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div className="btn-toolbar" role="toolbar">
-                  <div className="btn-group" role="group">
-                    <button
-                      type="button"
-                      className="btn btn-default"
-                      style={{ minWidth: 80 }}
-                      disabled={!canClick}
-                      onClick={actions.laserTestOn}
-                    >
-                      {i18n._('Laser Test')}
-                    </button>
-                  </div>
-                  <div className="btn-group" role="group">
-                    <button
-                      type="button"
-                      className="btn btn-default"
-                      style={{ minWidth: 80 }}
-                      disabled={!canClick}
-                      onClick={actions.laserTestOff}
-                    >
-                      {i18n._('Laser Off')}
-                    </button>
-                  </div>
+                <div className="row no-gutters">
+                    <div className="col-sm-3">
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-default"
+                            onClick={() => {
+                                actions.openModalProbingSetup(MODAL_PREVIEW);
+                            }}
+                            disabled={false}
+                        >
+                            Setup
+                        </button>
+                    </div>
+                    <div className="col-sm-3">
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-default"
+                            onClick={actions.clearGrid}
+                            disabled={false}
+                        >
+                            Clear
+                        </button>
+                    </div>
+                    <div className="col-sm-3">
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-default"
+                            onClick={actions.handleClickSave}
+                            disabled={false}
+                        >
+                            Save
+                        </button>
+                    </div>
+                    <div className="col-sm-3">
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-default"
+                            onClick={() => {
+                                actions.openModalApplyAutoLevel(MODAL_PREVIEW2);
+                            }}
+                            disabled={false}
+                        >
+                            Apply
+                        </button>
+                    </div>
                 </div>
-              </Panel.Body>
-            )}
-          </Panel>
-        </div>
-      );
+            </div >
+        );
     }
 }
 
