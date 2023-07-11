@@ -1,4 +1,4 @@
-import _max from 'lodash/max';
+// import _max from 'lodash/max';
 import PropTypes from 'prop-types';
 import pick from 'lodash/pick';
 import React, { PureComponent } from 'react';
@@ -66,7 +66,8 @@ class ApplyAutoLevel extends PureComponent {
   delta = 10;
 
   componentDidMount() {
-    const { state, actions } = this.props;
+    // const { state, actions } = this.props;
+    const { state } = this.props;
 
     //log.info('ApplyAutoLevel componentDidMount');
     this.probedPoints = state.probingObj;
@@ -75,7 +76,8 @@ class ApplyAutoLevel extends PureComponent {
   }
 
   canClick() {
-    const { state, actions } = this.props;
+    // const { state, actions } = this.props;
+    const { state } = this.props;
 
     if (this.probedPoints.length > 0 && this.gcode.length > 0) {
       this.setState({ canClickSave: true });
@@ -135,12 +137,13 @@ class ApplyAutoLevel extends PureComponent {
 
   handleLoadFile = (event) => {
     //log.info( 'ApplyAutoLevel handleLoadFile choice=' + this.choice);
-    const { actions } = this.props;
+    // const { actions } = this.props;
     const files = event.target.files;
     const file = files[0];
     const reader = new FileReader();
     reader.onloadend = (event) => {
-      const { result, error } = event.target;
+      // const { result, error } = event.target;
+      const { error } = event.target;
 
       if (error) {
         log.error(error);
@@ -261,7 +264,8 @@ class ApplyAutoLevel extends PureComponent {
   }
 
   autolevelUpload = (contents) => {
-    const { state, actions } = this.props;
+    // const { state, actions } = this.props;
+    const { actions } = this.props;
     this.applyCompensation();
     actions.loadAutoLevelledGcode(this.result);
   }
@@ -290,8 +294,8 @@ class ApplyAutoLevel extends PureComponent {
         if (!/(X|Y|Z)/gi.test(lineStripped)) {
           this.result.push(lineStripped); // no coordinate change --> copy to output
         } else {
-          //log.info( 'else');
-          let f = 1;
+          log.info('else');
+          // let f = 1;
           if (/(G38.+|G5.+|G10|G2.+|G4.+|G92|G92.1)/gi.test(lineStripped)) {
             this.result.push(lineStripped); // skip compensation for these G-Codes
           } else {
@@ -469,7 +473,8 @@ class ApplyAutoLevel extends PureComponent {
   }
 
   handleUseCurrent() {
-    const { state, actions } = this.props;
+    // const { state, actions } = this.props;
+    const { state } = this.props;
 
     this.probedPoints = state.probingObj;
     log.info('ApplyAutoLevel handleUseCurrent probedPoints \n' + JSON.stringify(this.probedPoints));
@@ -485,7 +490,8 @@ class ApplyAutoLevel extends PureComponent {
   }
 
   render() {
-    const { state, actions } = this.props;
+    // const { state, actions } = this.props;
+    const { actions } = this.props;
     const {
       probingDataSource, probingBbox, origBbox
     } = this.state;
