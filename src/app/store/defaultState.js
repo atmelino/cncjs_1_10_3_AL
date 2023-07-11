@@ -1,38 +1,38 @@
-import { IMPERIAL_STEPS, METRIC_STEPS } from "../constants";
+import { IMPERIAL_STEPS, METRIC_STEPS } from '../constants';
 
 const defaultState = {
   session: {
-    name: "",
-    token: "",
+    name: '',
+    token: '',
   },
   workspace: {
     container: {
       default: {
-        widgets: ["visualizer"],
+        widgets: ['visualizer'],
       },
       primary: {
         show: true,
         widgets: [
-          "connection",
-          "console",
-          "grbl",
-          "marlin",
-          "smoothie",
-          "tinyg",
-          "webcam",
+          'connection',
+          'console',
+          'grbl',
+          'marlin',
+          'smoothie',
+          'tinyg',
+          'webcam',
         ],
       },
       secondary: {
         show: true,
         widgets: [
-          "axes",
-          "gcode",
-          "macro",
-          "probe",
-          "spindle",
-          "laser",
-          "test01",
-          "autolevel",
+          'axes',
+          'gcode',
+          'macro',
+          'probe',
+          'spindle',
+          'laser',
+          'test01',
+          'autolevel',
         ],
       },
     },
@@ -46,7 +46,7 @@ const defaultState = {
     },
     axes: {
       minimized: false,
-      axes: ["x", "y", "z"],
+      axes: ['x', 'y', 'z'],
       jog: {
         keypad: false,
         imperial: {
@@ -71,12 +71,12 @@ const defaultState = {
     connection: {
       minimized: false,
       controller: {
-        type: "Grbl", // Grbl|Marlin|Smoothie|TinyG
+        type: 'Grbl', // Grbl|Marlin|Smoothie|TinyG
       },
-      port: "", // will be deprecated in v2
+      port: '', // will be deprecated in v2
       baudrate: 115200, // will be deprecated in v2
       connection: {
-        type: "serial",
+        type: 'serial',
         serial: {
           // RTS/CTS flow control
           rtscts: false,
@@ -96,8 +96,8 @@ const defaultState = {
     custom: {
       disabled: true,
       minimized: false,
-      title: "",
-      url: "",
+      title: '',
+      url: '',
     },
     gcode: {
       minimized: false,
@@ -173,7 +173,7 @@ const defaultState = {
     },
     probe: {
       minimized: false,
-      probeCommand: "G38.2",
+      probeCommand: 'G38.2',
       useTLO: false,
       probeDepth: 10,
       probeFeedrate: 20,
@@ -217,8 +217,8 @@ const defaultState = {
 
       // 3D View
       disabled: false,
-      projection: "orthographic", // 'perspective' or 'orthographic'
-      cameraMode: "pan", // 'pan' or 'rotate'
+      projection: 'orthographic', // 'perspective' or 'orthographic'
+      cameraMode: 'pan', // 'pan' or 'rotate'
       gcode: {
         displayName: true,
       },
@@ -243,13 +243,13 @@ const defaultState = {
 
       // local - Use a built-in camera or a connected webcam
       // stream - Use a URL that points to a stream in one of the following formats: Motion JPEG (mjpeg), RTSP, or H264 (MP4)
-      mediaSource: "local",
+      mediaSource: 'local',
 
       // The device id
-      deviceId: "",
+      deviceId: '',
 
       // The URL field is required for the M-JPEG stream
-      url: "",
+      url: '',
 
       geometry: {
         scale: 1.0,
