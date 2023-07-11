@@ -131,6 +131,7 @@ class GrblController {
   workflow = null;
 
   constructor(engine, options) {
+    log.debug("GrblController constructor");
     if (!engine) {
       throw new Error("engine must be specified");
     }
@@ -585,6 +586,15 @@ class GrblController {
     });
 
     this.runner.on("parameters", (res) => {
+      // // atmelino
+      // log.debug("parameters: " + JSON.stringify(res));
+      // const probingData = {
+      //   type: "probing",
+      //   printed: false,
+      //   result: res.value,
+      // };
+      // //this.emit('serialport:read', 'parameters');
+      // this.emit("serialport:read", probingData);
       this.emit("serialport:read", res.raw);
     });
 
