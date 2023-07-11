@@ -1,4 +1,4 @@
-import { ensureArray, ensureString } from "ensure-type";
+import ensureArray from "ensure-array";
 import * as parser from "gcode-parser";
 import _ from "lodash";
 import SerialConnection from "../../lib/SerialConnection";
@@ -131,18 +131,18 @@ class GrblController {
   workflow = null;
 
   constructor(engine, options) {
+    log.debug("GrblController constructor");
     if (!engine) {
       throw new Error("engine must be specified");
     }
     this.engine = engine;
 
-    const { port, baudrate, rtscts, pin } = { ...options };
+    const { port, baudrate, rtscts } = { ...options };
     this.options = {
       ...this.options,
       port: port,
       baudrate: baudrate,
       rtscts: rtscts,
-      pin,
     };
 
     // Connection
@@ -194,13 +194,8 @@ class GrblController {
     // Feeder
     this.feeder = new Feeder({
       dataFilter: (line, context) => {
-        const originalLine = line;
-        /**
-         * line = 'G0X10 ; comment text'
-         * parts = ['G0X10 ', ' comment text', '']
-         */
-        const parts = originalLine.split(/;(.*)/s); // `s` is the modifier for single-line mode
-        line = ensureString(parts[0]).trim();
+        // Remove comments that start with a semicolon `;`
+        line = line.replace(/\s*;.*/g, "").trim();
         context = this.populateContext(context);
 
         if (line[0] === "%") {
@@ -226,17 +221,17 @@ class GrblController {
           const programMode = _.intersection(words, ["M0", "M1"])[0];
           if (programMode === "M0") {
             log.debug("M0 Program Pause");
-            this.feeder.hold({ data: "M0", msg: originalLine }); // Hold reason
+            this.feeder.hold({ data: "M0" }); // Hold reason
           } else if (programMode === "M1") {
             log.debug("M1 Program Pause");
-            this.feeder.hold({ data: "M1", msg: originalLine }); // Hold reason
+            this.feeder.hold({ data: "M1" }); // Hold reason
           }
         }
 
         // M6 Tool Change
         if (_.includes(words, "M6")) {
           log.debug("M6 Tool Change");
-          this.feeder.hold({ data: "M6", msg: originalLine }); // Hold reason
+          this.feeder.hold({ data: "M6" }); // Hold reason
 
           // Surround M6 with parentheses to ignore
           // unsupported command error. If we nuke the whole
@@ -282,13 +277,8 @@ class GrblController {
       // Deduct the buffer size to prevent from buffer overrun
       bufferSize: (128 - 8), // The default buffer size is 128 bytes
       dataFilter: (line, context) => {
-        const originalLine = line;
-        /**
-         * line = 'G0X10 ; comment text'
-         * parts = ['G0X10 ', ' comment text', '']
-         */
-        const parts = originalLine.split(/;(.*)/s); // `s` is the modifier for single-line mode
-        line = ensureString(parts[0]).trim();
+        // Remove comments that start with a semicolon `;`
+        line = line.replace(/\s*;.*/g, "").trim();
         context = this.populateContext(context);
 
         const { sent, received } = this.sender.state;
@@ -301,7 +291,7 @@ class GrblController {
                 sent + 1
               }, sent=${sent}, received=${received}`,
             );
-            this.sender.hold({ data: WAIT, msg: originalLine }); // Hold reason
+            this.sender.hold({ data: WAIT }); // Hold reason
             return "G4 P0.5"; // dwell
           }
 
@@ -325,20 +315,14 @@ class GrblController {
                 sent + 1
               }, sent=${sent}, received=${received}`,
             );
-
-            this.event.trigger("gcode:pause");
-
-            this.workflow.pause({ data: "M0", msg: originalLine });
+            this.workflow.pause({ data: "M0" });
           } else if (programMode === "M1") {
             log.debug(
               `M1 Program Pause: line=${
                 sent + 1
               }, sent=${sent}, received=${received}`,
             );
-
-            this.event.trigger("gcode:pause");
-
-            this.workflow.pause({ data: "M1", msg: originalLine });
+            this.workflow.pause({ data: "M1" });
           }
         }
 
@@ -349,10 +333,7 @@ class GrblController {
               sent + 1
             }, sent=${sent}, received=${received}`,
           );
-
-          this.event.trigger("gcode:pause");
-
-          this.workflow.pause({ data: "M6", msg: originalLine });
+          this.workflow.pause({ data: "M6" });
 
           // Surround M6 with parentheses to ignore unsupported command error
           line = line.replace("M6", "(M6)");
@@ -531,8 +512,7 @@ class GrblController {
 
           if (pauseError) {
             this.workflow.pause({
-              err: true,
-              msg: `error:${code} (${error.message})`,
+              err: `error:${code} (${error.message})`,
             });
           }
         } else {
@@ -540,7 +520,7 @@ class GrblController {
           this.emit("serialport:read", res.raw);
 
           if (pauseError) {
-            this.workflow.pause({ err: true, msg: res.raw });
+            this.workflow.pause({ err: res.raw });
           }
         }
 
@@ -585,6 +565,15 @@ class GrblController {
     });
 
     this.runner.on("parameters", (res) => {
+      // atmelino
+      log.debug("parameters: " + JSON.stringify(res));
+      const probingData = {
+        type: "probing",
+        printed: false,
+        result: res.value,
+      };
+      //this.emit('serialport:read', 'parameters');
+      this.emit("serialport:read", probingData);
       this.emit("serialport:read", res.raw);
     });
 
@@ -810,9 +799,6 @@ class GrblController {
     // Tool
     const tool = this.runner.getTool();
 
-    // G-code parameters
-    const parameters = this.runner.getParameters();
-
     return Object.assign(context || {}, {
       // User-defined global variables
       global: this.sharedContext,
@@ -857,9 +843,6 @@ class GrblController {
 
       // Tool
       tool: Number(tool) || 0,
-
-      // G-code parameters
-      params: parameters,
 
       // Global objects
       ...globalObjects,
@@ -932,7 +915,7 @@ class GrblController {
   }
 
   open(callback = noop) {
-    const { port, baudrate, pin } = this.options;
+    const { port, baudrate } = this.options;
 
     // Assertion check
     if (this.isOpen()) {
@@ -944,37 +927,12 @@ class GrblController {
     this.connection.on("close", this.connectionEventListener.close);
     this.connection.on("error", this.connectionEventListener.error);
 
-    this.connection.open(async (err) => {
+    this.connection.open((err) => {
       if (err) {
         log.error(`Error opening serial port "${port}":`, err);
         this.emit("serialport:error", { err: err, port: port });
         callback(err); // notify error
         return;
-      }
-
-      let setOptions = null;
-      try {
-        // Set DTR and RTS control flags if they exist
-        if (typeof pin?.dtr === "boolean") {
-          setOptions = {
-            ...setOptions,
-            dtr: pin?.dtr,
-          };
-        }
-        if (typeof pin?.rts === "boolean") {
-          setOptions = {
-            ...setOptions,
-            rts: pin?.rts,
-          };
-        }
-
-        if (setOptions) {
-          await delay(100);
-          await this.connection.port.set(setOptions);
-          await delay(100);
-        }
-      } catch (err) {
-        log.error("Failed to set control flags:", { err, port });
       }
 
       this.emit("serialport:open", {
@@ -1141,7 +1099,7 @@ class GrblController {
           return;
         }
 
-        this.emit("gcode:load", name, this.sender.state.gcode, context);
+        this.emit("gcode:load", name, gcode, context);
         this.event.trigger("gcode:load");
 
         log.debug(
