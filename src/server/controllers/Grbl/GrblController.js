@@ -587,7 +587,7 @@ class GrblController {
 
     this.runner.on("parameters", (res) => {
       // // atmelino
-      // log.debug("parameters: " + JSON.stringify(res));
+      log.verbose("parameters: " + JSON.stringify(res));
       // const probingData = {
       //   type: "probing",
       //   printed: false,
