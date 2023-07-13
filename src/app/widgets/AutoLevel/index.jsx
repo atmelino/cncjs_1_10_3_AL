@@ -346,7 +346,7 @@ class AutoLevelWidget extends PureComponent {
             result: received.result.result,
             x: Number(received.result.x),
             y: Number(received.result.y),
-            z: Number(received.result.z )
+            z: Number(received.result.z)
           }
 
         };

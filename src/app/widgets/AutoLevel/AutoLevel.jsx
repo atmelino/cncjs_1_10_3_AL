@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import numeral from 'numeral';
+// import numeral from 'numeral';
 import ReactTable from 'react-table';
 import './react-table.css';
 import log from '../../lib/log';
@@ -63,7 +63,7 @@ class AutoLevel extends PureComponent {
         // log.info('AutoLevel.jsx new reference: ' + this.referenceZ);
         let PRBz = Number(sz);
         let corz = PRBz - this.referenceZ; // corrected z
-        let cz = numeral(corz).format('0.000');
+        // let cz = numeral(corz).format('0.000');
 
         // if (this.state.probingObj.length > 0) {
         //     log.error('AutoLevel points: ' + this.state.probingObj.length);
