@@ -217,8 +217,8 @@ class AutoLevelWidget extends PureComponent {
     simulateProbing: () => {
       //const { state, actions } = this.props;
       const { startX, endX, startY, endY, stepX, stepY } = this.state;
-      //log.info('AutoLevel/index simulateProbing state : ' + JSON.stringify(this.state));
-      //log.info('AutoLevel/index simulateProbing startX, endX, startY, endY, stepX, stepY : ' + startX + ' ' + endX + ' ' + startY + ' ' + endY + ' ' + stepX + ' ' + stepY);
+      //log.info('AutoLevel/index.jsx simulateProbing state : ' + JSON.stringify(this.state));
+      //log.info('AutoLevel/index.jsx simulateProbing startX, endX, startY, endY, stepX, stepY : ' + startX + ' ' + endX + ' ' + startY + ' ' + endY + ' ' + stepX + ' ' + stepY);
       this.state.probingMatrix = [];
       let row = [];
       let simProbingObj = [];
@@ -254,15 +254,15 @@ class AutoLevelWidget extends PureComponent {
         this.state.probingMatrix.push(row);
         row = [];
       }
-      //log.info('AutoLevel/index simProbingObj : ' + JSON.stringify(simProbingObj));
-      //log.info('AutoLevel/index matrix : ' + JSON.stringify(this.state.probingMatrix));
+      log.info('AutoLevel/index.jsx simProbingObj : ' + JSON.stringify(simProbingObj));
+      //log.info('AutoLevel/index.jsx matrix : ' + JSON.stringify(this.state.probingMatrix));
       this.setState({
         probingObj: simProbingObj,
         referenceZ: 0.0
       });
     },
     clearGrid: () => {
-      log.info('AutoLevel/index clearGrid');
+      log.info('AutoLevel/index.jsx clearGrid');
       this.setState({
         probingObj: [],
         referenceZ: 0.0,
@@ -273,12 +273,12 @@ class AutoLevelWidget extends PureComponent {
       let prefix = Date.now();
       let fileName = prefix + 'probedata.rpf';
       let fileContent = JSON.stringify(this.state.probingObj);
-      //log.info('AutoLevel/index fileContent=' + fileContent);
+      log.info('AutoLevel/index.jsx fileContent=' + fileContent);
       this.download(fileContent, fileName, 'text/plain');
 
       if (!(this.state.probingMatrix === undefined || this.state.probingMatrix.length === 0)) {
         fileContent = this.downloadableCSV(this.state.probingMatrix);
-        //log.info('AutoLevel/index csv=' + fileContent);
+        //log.info('AutoLevel/index.jsx csv=' + fileContent);
         fileName = prefix + 'probedata.csv';
         this.download(fileContent, fileName, 'text/plain');
       }
@@ -328,17 +328,31 @@ class AutoLevelWidget extends PureComponent {
     'prbevent': (payload) => {
       //const { mypayload } = payload;
       //this.setState({ payload: payload });
-      log.info('AutoLevel/index Probing prbevent');
+      log.info('AutoLevel/index.jsx Probing prbevent');
     },
     'gcode:load': (name, gcode, context) => {
-      log.info('AutoLevel/index gcode:load event');
+      log.info('AutoLevel/index.jsx gcode:load event');
     },
     'serialport:read': (received) => {
       if (received.type === 'probing') {
         // atmelino
-        //log.error('AutoLevel probing received through serialport:read');
-        //log.error('AutoLevel s:r' + JSON.stringify(received));
-        this.setState({ probingData: received });
+        // log.info('AutoLevel/index.jsx probing received through serialport:read');
+        // log.info('AutoLevel/index.jsx  received=' + JSON.stringify(received));
+        const modified = {
+          type: received.type,
+          printed: false,
+          result:
+          {
+            result: received.result.result,
+            x: Number(received.result.x),
+            y: Number(received.result.y),
+            z: Number(received.result.z )
+          }
+
+        };
+        // log.info('AutoLevel/index.jsx  modified=' + JSON.stringify(modified));
+
+        this.setState({ probingData: modified });
       }
       //const { opt } = received;
     },

@@ -47,8 +47,8 @@ class AutoLevel extends PureComponent {
       //log.error('AutoLevel :' + JSON.stringify(state.probingData.result));
       if (state.probingData.printed === false) {
         state.probingData.printed = true;
-        //log.error('AutoLevel result :' + JSON.stringify(state.probingData.result));
-        log.info('AutoLevel result :' + JSON.stringify(state.probingData.result));
+        //log.error('AutoLevel.jsx result :' + JSON.stringify(state.probingData.result));
+        log.info('AutoLevel.jsx result :' + JSON.stringify(state.probingData.result));
 
         let sx = state.probingData.result.x;
         let sy = state.probingData.result.y;
@@ -60,7 +60,7 @@ class AutoLevel extends PureComponent {
         }
 
         // correct new z entry for autolevel plane
-        log.info('AutoLevel new reference: ' + this.referenceZ);
+        // log.info('AutoLevel.jsx new reference: ' + this.referenceZ);
         let PRBz = Number(sz);
         let corz = PRBz - this.referenceZ; // corrected z
         let cz = numeral(corz).format('0.000');
@@ -79,10 +79,11 @@ class AutoLevel extends PureComponent {
         state.probingObj.push({
           x: sx,
           y: sy,
-          z: cz,
+          // z: cz,
+          z: corz,
           pz: sz
         });
-        //log.info('AutoLevel probingObj : ' + JSON.stringify(this.state.probingObj));
+        log.info('AutoLevel.jsx probingObj : ' + JSON.stringify(state.probingObj));
       }
     }
     //log.info( 'AutoLevel render before return');
