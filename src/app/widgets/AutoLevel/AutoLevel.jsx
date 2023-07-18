@@ -58,9 +58,8 @@ class AutoLevel extends PureComponent {
         let sy = state.probingData.result.y;
         let sz = state.probingData.result.z;
 
-        // correct new x entry for difference between machine position and work position 
-
-        // correct new y entry for difference between machine position and work position 
+        // correct new x entry for difference between machine position and work position
+        // correct new y entry for difference between machine position and work position  
 
 
         // first data point becomes z reference
