@@ -20,7 +20,11 @@ class AutoLevel extends PureComponent {
 
   render() {
     const { state, actions } = this.props;
-    //log.error('AutoLevel :' + JSON.stringify(state));
+    // log.info('AutoLevel.jsx state' + JSON.stringify(state));
+    log.info('AutoLevel.jsx state.controller.state.status' + JSON.stringify(state.controller.state.status));
+
+// if it exists
+//    log.info('AutoLevel.jsx state.controller.state.status.wpos' + JSON.stringify(state.controller.state.status.wpos));
 
     const colWidth = 60;
     const probingColumns = [{
@@ -53,6 +57,11 @@ class AutoLevel extends PureComponent {
         let sx = state.probingData.result.x;
         let sy = state.probingData.result.y;
         let sz = state.probingData.result.z;
+
+        // correct new x entry for difference between machine position and work position 
+
+        // correct new y entry for difference between machine position and work position 
+
 
         // first data point becomes z reference
         if (state.probingObj.length === 0) {
