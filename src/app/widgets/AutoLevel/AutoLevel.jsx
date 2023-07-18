@@ -23,8 +23,8 @@ class AutoLevel extends PureComponent {
     // log.info('AutoLevel.jsx state' + JSON.stringify(state));
     log.info('AutoLevel.jsx state.controller.state.status' + JSON.stringify(state.controller.state.status));
 
-// if it exists
-//    log.info('AutoLevel.jsx state.controller.state.status.wpos' + JSON.stringify(state.controller.state.status.wpos));
+    // if it exists
+    //    log.info('AutoLevel.jsx state.controller.state.status.wpos' + JSON.stringify(state.controller.state.status.wpos));
 
     const colWidth = 60;
     const probingColumns = [{
