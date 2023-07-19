@@ -22,9 +22,6 @@ class AutoLevel extends PureComponent {
     const { state, actions } = this.props;
     // log.info('AutoLevel.jsx state' + JSON.stringify(state));
 
-    // if it exists
-    //    log.info('AutoLevel.jsx state.controller.state.status.wpos' + JSON.stringify(state.controller.state.status.wpos));
-
     const colWidth = 60;
     const probingColumns = [{
       Header: 'x',
@@ -48,20 +45,19 @@ class AutoLevel extends PureComponent {
       //log.info('AutoLevel :' + JSON.stringify(state));
       //log.error('AutoLevel :' + JSON.stringify(state.probingData));
       //log.error('AutoLevel :' + JSON.stringify(state.probingData.result));
-      log.info('AutoLevel.jsx state.controller.state.status' + JSON.stringify(state.controller.state.status));
+      // log.info('AutoLevel.jsx state.controller.state.status' + JSON.stringify(state.controller.state.status));
+      // log.info('AutoLevel.jsx state.controller.state.status.wpos' + JSON.stringify(state.controller.state.status.wpos));
 
       if (state.probingData.printed === false) {
         state.probingData.printed = true;
         //log.error('AutoLevel.jsx result :' + JSON.stringify(state.probingData.result));
         log.info('AutoLevel.jsx result :' + JSON.stringify(state.probingData.result));
 
-        let sx = state.probingData.result.x;
-        let sy = state.probingData.result.y;
+        let sx = state.controller.state.status.wpos.x;
+        let sy = state.controller.state.status.wpos.y;
         let sz = state.probingData.result.z;
-
-        // correct new x entry for difference between machine position and work position
-        // correct new y entry for difference between machine position and work position
-
+        // let sy = state.probingData.result.y;
+        // let sz = state.probingData.result.z;
 
         // first data point becomes z reference
         if (state.probingObj.length === 0) {
@@ -73,17 +69,6 @@ class AutoLevel extends PureComponent {
         let PRBz = Number(sz);
         let corz = PRBz - this.referenceZ; // corrected z
         // let cz = numeral(corz).format('0.000');
-
-        // if (this.state.probingObj.length > 0) {
-        //     log.error('AutoLevel points: ' + this.state.probingObj.length);
-        //     // first point? use z as reference
-        //     // same x-y position as before? Replace previous entry
-        //     let index = this.state.probingObj.length - 1;
-        //     if (sx === this.state.probingObj[index].x && sy === this.state.probingObj[index].y) {
-        //         log.error('AutoLevel repeat position: ');
-        //         this.this.referenceZ = Number(sz);
-        //     }
-        // }
 
         state.probingObj.push({
           x: sx,
