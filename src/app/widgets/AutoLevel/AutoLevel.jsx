@@ -21,7 +21,6 @@ class AutoLevel extends PureComponent {
   render() {
     const { state, actions } = this.props;
     // log.info('AutoLevel.jsx state' + JSON.stringify(state));
-    log.info('AutoLevel.jsx state.controller.state.status' + JSON.stringify(state.controller.state.status));
 
     // if it exists
     //    log.info('AutoLevel.jsx state.controller.state.status.wpos' + JSON.stringify(state.controller.state.status.wpos));
@@ -49,6 +48,8 @@ class AutoLevel extends PureComponent {
       //log.info('AutoLevel :' + JSON.stringify(state));
       //log.error('AutoLevel :' + JSON.stringify(state.probingData));
       //log.error('AutoLevel :' + JSON.stringify(state.probingData.result));
+      log.info('AutoLevel.jsx state.controller.state.status' + JSON.stringify(state.controller.state.status));
+
       if (state.probingData.printed === false) {
         state.probingData.printed = true;
         //log.error('AutoLevel.jsx result :' + JSON.stringify(state.probingData.result));
@@ -59,7 +60,7 @@ class AutoLevel extends PureComponent {
         let sz = state.probingData.result.z;
 
         // correct new x entry for difference between machine position and work position
-        // correct new y entry for difference between machine position and work position  
+        // correct new y entry for difference between machine position and work position
 
 
         // first data point becomes z reference
